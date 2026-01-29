@@ -1,0 +1,943 @@
+/* --- Переменные --- */
+.bratko-notes-app {
+  --font: "Outfit", system-ui, sans-serif;
+  --bg: #f5f0ea;
+  --surface: #fffefb;
+  --surface-hover: #faf8f4;
+  --text: #2c2825;
+  --text-muted: #6b6560;
+  --accent: #c17f59;
+  --accent-hover: #a86a47;
+  --accent-light: #f0e4dd;
+  --success: #5a8f6e;
+  --danger: #c45c4a;
+  --danger-hover: #a84d3d;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+  --shadow-hover: 0 8px 24px rgba(44, 40, 37, 0.1);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --transition: 0.2s ease;
+}
+
+/* --- База --- */
+.bratko-notes-app *,
+.bratko-notes-app *::before,
+.bratko-notes-app *::after {
+  box-sizing: border-box;
+}
+
+.bratko-notes-app {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+/* --- Контейнер приложения --- */
+.bratko-notes-app .app {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* --- Шапка --- */
+.bratko-notes-app .header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.bratko-notes-app .header__main {
+  text-align: left;
+}
+
+.bratko-notes-app .header__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.bratko-notes-app .header__subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.bratko-notes-app .header__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.bratko-notes-app .header__user-name {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.bratko-notes-app .header__logout {
+  padding: 0.5rem 1rem;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.bratko-notes-app .header__logout:hover {
+  background: #e8e4de;
+  color: var(--text);
+}
+
+/* --- Форма добавления заметки --- */
+.bratko-notes-app .add-note {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+.bratko-notes-app .add-note__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bratko-notes-app .add-note__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bratko-notes-app .add-note__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), background var(--transition);
+  resize: none;
+}
+
+.bratko-notes-app .add-note__input::placeholder {
+  color: var(--text-muted);
+}
+
+.bratko-notes-app .add-note__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.bratko-notes-app .add-note__input--title {
+  font-weight: 500;
+}
+
+.bratko-notes-app .add-note__input--body {
+  min-height: 2.5rem;
+}
+
+.bratko-notes-app .add-note__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), transform 0.1s ease;
+}
+
+.bratko-notes-app .add-note__submit:hover {
+  background: var(--accent-hover);
+}
+
+.bratko-notes-app .add-note__submit:active {
+  transform: scale(0.98);
+}
+
+.bratko-notes-app .add-note__submit-icon {
+  flex-shrink: 0;
+}
+
+/* --- Список заметок --- */
+.bratko-notes-app .notes {
+  flex: 1;
+  min-height: 120px;
+}
+
+.bratko-notes-app .notes__error {
+  margin: 0 0 0.75rem;
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.bratko-notes-app .notes__empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-muted);
+}
+
+.bratko-notes-app .notes__empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  background: var(--accent-light);
+  border-radius: 50%;
+  position: relative;
+}
+
+.bratko-notes-app .notes__empty-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 28px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  border-top: none;
+}
+
+.bratko-notes-app .notes__empty-text {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.bratko-notes-app .notes__empty-hint {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.bratko-notes-app .notes__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* --- Карточка заметки --- */
+.bratko-notes-app .note {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem 1rem 1rem 1.25rem;
+  transition: box-shadow var(--transition), background var(--transition);
+  animation: bratkoNoteIn 0.25s ease;
+}
+
+@keyframes bratkoNoteIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bratko-notes-app .note:hover {
+  box-shadow: var(--shadow-hover);
+  background: var(--surface-hover);
+}
+
+.bratko-notes-app .note__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bratko-notes-app .note__title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bratko-notes-app .note__title:empty + .note__body {
+  margin-top: 0;
+}
+
+.bratko-notes-app .note__body {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bratko-notes-app .note__body:empty {
+  display: none;
+}
+
+.bratko-notes-app .note__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.bratko-notes-app .note__btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color var(--transition), background var(--transition);
+}
+
+.bratko-notes-app .note__btn:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+
+.bratko-notes-app .note__btn--delete:hover {
+  color: var(--danger);
+  background: rgba(196, 92, 74, 0.1);
+}
+
+.bratko-notes-app .note__btn--edit::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.bratko-notes-app .note__btn--delete::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/%3E%3Cline x1='10' y1='11' x2='10' y2='17'/%3E%3Cline x1='14' y1='11' x2='14' y2='17'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/%3E%3Cline x1='10' y1='11' x2='10' y2='17'/%3E%3Cline x1='14' y1='11' x2='14' y2='17'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* --- Подвал --- */
+.bratko-notes-app .footer {
+  text-align: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(44, 40, 37, 0.08);
+}
+
+.bratko-notes-app .footer__count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --- Подпись разработчика --- */
+.bratko-notes-app .bratko-notes-dev-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(44, 40, 37, 0.06);
+  text-align: center;
+}
+
+.bratko-notes-app .bratko-notes-dev-footer__link {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.bratko-notes-app .bratko-notes-dev-footer__link:hover {
+  color: var(--accent);
+}
+
+/* --- Модальное окно редактирования --- */
+.bratko-notes-app .modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.bratko-notes-app .modal[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bratko-notes-app .modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 40, 37, 0.4);
+  cursor: pointer;
+}
+
+.bratko-notes-app .modal__box {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  padding: 1.5rem;
+  animation: bratkoModalIn 0.2s ease;
+}
+
+@keyframes bratkoModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.bratko-notes-app .modal__title {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.bratko-notes-app .modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bratko-notes-app .modal__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition);
+  resize: none;
+}
+
+.bratko-notes-app .modal__input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.bratko-notes-app .modal__input--textarea {
+  min-height: 100px;
+}
+
+.bratko-notes-app .modal__buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.bratko-notes-app .modal__btn {
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.bratko-notes-app .modal__btn--cancel {
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.bratko-notes-app .modal__btn--cancel:hover {
+  background: #e8e4de;
+  color: var(--text);
+}
+
+.bratko-notes-app .modal__btn--save {
+  background: var(--accent);
+  color: #fff;
+}
+
+.bratko-notes-app .modal__btn--save:hover {
+  background: var(--accent-hover);
+}
+
+/* --- Пустое состояние и список заметок --- */
+.bratko-notes-app .notes.has-notes .notes__empty {
+  display: none;
+}
+
+.bratko-notes-app .notes.has-notes .notes__list {
+  display: flex;
+}
+
+.bratko-notes-app .notes:not(.has-notes) .notes__empty {
+  display: block;
+}
+
+.bratko-notes-app .notes:not(.has-notes) .notes__list {
+  display: none;
+}
+
+/* --- Экран авторизации --- */
+.bratko-notes-app .auth-page {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.bratko-notes-app .auth {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem 3rem;
+  max-width: 880px;
+  width: 100%;
+}
+
+.bratko-notes-app .auth__left {
+  flex: 1 1 320px;
+  max-width: 420px;
+  text-align: center;
+}
+
+.bratko-notes-app .auth__title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.bratko-notes-app .auth__subtitle {
+  margin: 0 0 2rem;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.bratko-notes-app .auth__infographic {
+  position: relative;
+  width: 160px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.bratko-notes-app .auth__infographic-sheet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 90px;
+  background: var(--surface);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  transform-origin: center bottom;
+}
+
+.bratko-notes-app .auth__infographic-sheet--1 {
+  transform: translate(-50%, -100%) rotate(-6deg);
+  background: var(--accent-light);
+  border: 2px solid rgba(193, 127, 89, 0.3);
+}
+
+.bratko-notes-app .auth__infographic-sheet--2 {
+  transform: translate(-50%, -100%) rotate(0deg) translateY(8px);
+  border: 2px solid rgba(44, 40, 37, 0.08);
+}
+
+.bratko-notes-app .auth__infographic-sheet--3 {
+  transform: translate(-50%, -100%) rotate(6deg) translateY(16px);
+  border: 2px solid rgba(44, 40, 37, 0.08);
+  opacity: 0.9;
+}
+
+.bratko-notes-app .auth__infographic-lines {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70px;
+  height: 50px;
+  transform: translate(-50%, -140%);
+  background: repeating-linear-gradient(to bottom, var(--accent) 0, var(--accent) 2px, transparent 2px, transparent 8px);
+  opacity: 0.4;
+  border-radius: 2px;
+}
+
+.bratko-notes-app .auth__right {
+  flex: 1 1 320px;
+  max-width: 380px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  padding: 2rem;
+}
+
+.bratko-notes-app .auth__hint {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.bratko-notes-app .auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.bratko-notes-app .auth__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.bratko-notes-app .auth__input::placeholder { color: var(--text-muted); }
+
+.bratko-notes-app .auth__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.bratko-notes-app .auth__submit {
+  margin-top: 0.25rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), transform 0.1s ease;
+}
+
+.bratko-notes-app .auth__submit:hover { background: var(--accent-hover); }
+.bratko-notes-app .auth__submit:active { transform: scale(0.98); }
+
+.bratko-notes-app .auth__register-hint { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--text-muted); }
+
+.bratko-notes-app .auth__register-btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+.bratko-notes-app .auth__register-btn:hover {
+  background: var(--accent-light);
+  color: var(--accent-hover);
+}
+
+.bratko-notes-app .auth__error {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #c45c4a;
+  line-height: 1.4;
+  min-height: 1.4em;
+  display: none;
+}
+
+.bratko-notes-app .auth__error.auth__error--visible {
+  display: block;
+}
+
+.bratko-notes-app .auth__success {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.bratko-notes-app .auth__timer {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .bratko-notes-app .auth { flex-direction: column; gap: 2rem; }
+  .bratko-notes-app .auth__left,
+  .bratko-notes-app .auth__right { max-width: 100%; }
+}
+
+/* --- Попап регистрации --- */
+.bratko-notes-app .auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.bratko-notes-app .auth-modal[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bratko-notes-app .auth-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 40, 37, 0.4);
+  cursor: pointer;
+}
+
+.bratko-notes-app .auth-modal__box {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  padding: 1.5rem;
+  animation: authModalIn 0.2s ease;
+}
+
+@keyframes authModalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(-8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.bratko-notes-app .auth-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bratko-notes-app .auth-modal__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.bratko-notes-app .auth-modal__close {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.bratko-notes-app .auth-modal__close:hover {
+  background: #e8e4de;
+  color: var(--text);
+}
+
+.bratko-notes-app .auth-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bratko-notes-app .auth-modal__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition);
+}
+
+.bratko-notes-app .auth-modal__input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.bratko-notes-app .auth-modal__input::placeholder { color: var(--text-muted); }
+
+.bratko-notes-app .auth-modal__buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.bratko-notes-app .auth-modal__btn {
+  flex: 1;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.bratko-notes-app .auth-modal__btn--cancel {
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.bratko-notes-app .auth-modal__btn--cancel:hover {
+  background: #e8e4de;
+  color: var(--text);
+}
+
+.bratko-notes-app .auth-modal__btn--submit {
+  background: var(--accent);
+  color: #fff;
+}
+
+.bratko-notes-app .auth-modal__btn--submit:hover { background: var(--accent-hover); }
+
+.bratko-notes-app .auth-modal__error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #c45c4a;
+  display: none;
+}
+
+.bratko-notes-app .auth-modal__error[aria-hidden="false"] { display: block; }
+
+.bratko-notes-app .auth-modal__form-block--hidden,
+.bratko-notes-app .auth-modal__success-block--hidden {
+  display: none !important;
+}
+
+.bratko-notes-app .auth-modal__box:has(.auth-modal__success-block:not(.auth-modal__success-block--hidden)) .auth-modal__header {
+  display: none;
+}
+
+.bratko-notes-app .auth-modal__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.bratko-notes-app .auth-modal__success-title {
+  font-weight: 500;
+}
+
+.bratko-notes-app .auth-modal__timer-line {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.bratko-notes-app .auth-modal__timer-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+
+.bratko-notes-app .auth-modal__timer {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.bratko-notes-app .auth-register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background var(--transition);
+}
+
+.bratko-notes-app .auth-register-btn:hover {
+  background: var(--accent-hover);
+}
