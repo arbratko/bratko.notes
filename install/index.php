@@ -172,15 +172,25 @@ class bratko_notes extends CModule
     {
         $dirsToRemove = [
             "/local/components/bratko/notes.list",
+            "/local/components/bratko/notes.auth",
+            "/local/components/bratko/notes.register",
             "/bitrix/js/bratko.notes",
+            "/bitrix/js/bratko/notes",
             "/notes",
         ];
 
+        $docRoot = $_SERVER["DOCUMENT_ROOT"] ?? "";
+        if ($docRoot === "") {
+            return true;
+        }
+
         foreach ($dirsToRemove as $path) {
-            DeleteDirFilesEx($path);
+            $fullPath = $docRoot . $path;
+            if (file_exists($fullPath)) {
+                DeleteDirFilesEx($path);
+            }
         }
 
         return true;
     }
 }
-
