@@ -28,12 +28,6 @@
 
 Страница заметок будет доступна по адресу: **https://ваш-сайт.ru/notes/**.
 
-## DEMO
-
-- Демо-стенд: [https://notes.fuzehub.ru/](https://notes.fuzehub.ru/)
-- Логин: `bratko_notes_demo_user`
-- Пароль: `DemoNotes123!`
-
 ## Использование
 
 - Откройте `/notes/` в браузере: гостям показывается форма входа и регистрация, после входа — список заметок и форма добавления.
@@ -57,6 +51,17 @@ bratko.notes/
 ├── LICENSE                  — MIT
 └── README.md
 ```
+
+## DEMO
+
+- Демо-стенд: [https://notes.fuzehub.ru/](https://notes.fuzehub.ru/)
+- Логин: `bratko_notes_demo_user`
+- Пароль: `DemoNotes123!`
+
+## API
+
+- Для внешних сервисов доступно API (Bearer token).
+- API можно тестировать и использовать для интеграций по документации: [https://notes.fuzehub.ru/api/docs](https://notes.fuzehub.ru/api/docs)
 
 ## Лицензия
 
