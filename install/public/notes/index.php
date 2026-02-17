@@ -1,4 +1,10 @@
 <?php
+/**
+ * Публичная страница заметок модуля bratko.notes.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 

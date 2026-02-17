@@ -1,4 +1,10 @@
 <?php
+/**
+ * Языковой файл шаблона bratko:notes.register.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 $MESS["NOTES_REGISTER_SUCCESS_TITLE"] = "Регистрация прошла успешно.";
 $MESS["NOTES_REGISTER_TIMER_LINE"] = "Переход к заметкам через";

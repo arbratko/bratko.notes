@@ -1,4 +1,10 @@
 <?php
+/**
+ * Шаблон компонента bratko:notes.list.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Page\Asset;

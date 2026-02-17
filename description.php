@@ -1,4 +1,10 @@
 <?php
+/**
+ * Описание модуля bratko.notes.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 $arDescription = [
     "NAME" => "Заметки",

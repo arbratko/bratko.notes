@@ -1,4 +1,10 @@
 <?php
+/**
+ * Языковые сообщения контроллера регистрации bratko.notes.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 $MESS["BRATKO_NOTES_REGISTER_ERROR_FILL_ALL"] = "Заполните все поля регистрации.";
 $MESS["BRATKO_NOTES_REGISTER_ERROR_PASSWORD_MISMATCH"] = "Пароли не совпадают.";

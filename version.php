@@ -1,4 +1,10 @@
 <?php
+/**
+ * Версия модуля bratko.notes.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 $arModuleVersion = [
     "VERSION" => "1.0.0",

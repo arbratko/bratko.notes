@@ -1,4 +1,11 @@
 <?php
+/**
+ * Языковой файл шаблона bratko:notes.list.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
+
 $MESS["NOTES_LIST_AUTH_TITLE"] = "Мини-сервис заметок";
 $MESS["NOTES_LIST_AUTH_SUBTITLE"] = "идеи и напоминания";
 $MESS["NOTES_LIST_AUTH_HINT"] = "Необходимо авторизоваться, чтобы создавать и редактировать заметки.";

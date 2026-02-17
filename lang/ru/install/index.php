@@ -1,4 +1,10 @@
 <?php
+/**
+ * Языковые сообщения установщика модуля bratko.notes.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 
 $MESS["BRATKO_NOTES_MODULE_NAME"] = "Заметки";
 $MESS["BRATKO_NOTES_MODULE_DESC"] = "Мини-сервис заметок";

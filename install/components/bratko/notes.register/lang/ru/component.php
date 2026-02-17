@@ -1,4 +1,10 @@
 <?php
+/**
+ * Языковые сообщения компонента bratko:notes.register.
+ *
+ * @author   Артём Братко
+ * @link     https://arbratko.ru/
+ */
 $MESS["NOTES_REGISTER_ERROR_SESSION"] = "Неверная сессия. Обновите страницу и попробуйте снова.";
 $MESS["NOTES_REGISTER_ERROR_FILL_ALL"] = "Заполните все поля регистрации.";
 $MESS["NOTES_REGISTER_ERROR_PASSWORD_MISMATCH"] = "Пароли не совпадают.";
