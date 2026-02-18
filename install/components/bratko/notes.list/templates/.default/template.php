@@ -71,6 +71,7 @@ $messages = [
 Extension::load('main.core');
 
 $asset = Asset::getInstance();
+$asset->addString('<link rel="icon" type="image/svg+xml" href="/notes/favicon.svg">');
 $asset->addString('<link rel="preconnect" href="https://fonts.googleapis.com">');
 $asset->addString('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
 $asset->addString('<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">');
